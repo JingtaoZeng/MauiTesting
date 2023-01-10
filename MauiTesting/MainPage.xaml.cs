@@ -9,16 +9,22 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-	private void OnCounterClicked(object sender, EventArgs e)
+	private async void OnCounterClicked(object sender, EventArgs e)
 	{
-		count++;
+		var t = DisplayAlert("提示", "测试文字，展示弹窗效果", "确定");
 
+		await Task.Delay(2000);
+
+        count++;
+
+		var button = (Button)sender;
 		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
+			button.Text = $"Clicked {count} time";
 		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
+            button.Text = $"Clicked {count} times";
+        
+		await t;
+		await DisplayAlert("提示", "22222222", "确定");
 	}
 }
 
